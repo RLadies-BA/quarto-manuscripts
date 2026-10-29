@@ -1,0 +1,25 @@
+project:
+  type: manuscript
+
+manuscript:
+  article: index.qmd
+  code-links:
+    - text: Summary functions
+      icon: file-code
+      href: R/summaries.R
+    - text: Plot functions
+      icon: file-code
+      href: R/plots.R
+
+format:
+  html:
+    comments:
+      hypothesis: true
+  docx: default
+  pdf: default
+
+execute:
+  freeze: true
+
+
+

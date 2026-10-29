@@ -1,0 +1,284 @@
+---
+title: "Perceived barriers for accessing international research funding among Latin American researchers"
+author:
+  - name: Jesica Formoso
+    affiliations:
+      - ref: ciipme
+      - ref: conicet
+    corresponding: true
+    email: jformoso@conicet.gov.ar
+    orcid: 0000-0003-3062-4036 
+  - name: Paz Miguez
+    affiliations:
+      - ref: metadocencia
+  - name: Nicolás Palopoli
+    affiliations:
+      - ref: unq
+  - name: Irene Vazano
+    affiliations:
+      - ref: metadocencia
+  - name: Julián Buede
+    affiliations:
+      - ref: metadocencia
+  - name: Juan Pablo Barreyro
+    affiliations:
+      - ref: ciipme
+      - ref: conicet
+  - name: Laura Ación
+    affiliations:
+      - ref: metadocencia
+affiliations:
+  - id: ciipme
+    name: Centro Interdisciplinario de Investigaciones en Psicología Matemática y Experimental
+    city: Ciudad de Buenos Aires
+    country: Argentina
+  - id: conicet
+    name: National Scientific and Technical Research Council
+    city: Ciudad de Buenos Aires
+    country: Argentina
+  - id: metadocencia
+    name: MetaDocencia
+    city: Portland
+    country: United States of America
+  - id: uba
+    name: Universidad de Buenos Aires
+    city: Ciudad de Buenos Aires
+    country: Argentina
+  - id: unq
+    name: Universidad Nacional de Quilmes
+    city: Buenos Aires
+    country: Argentina
+crossref:
+  fig-title: Fig     
+  fig-prefix: Fig    
+execute:
+  warning: false
+  message: false
+abstract: |
+  Access to international funding is increasingly essential for sustaining research in a highly competitive and globalized scientific landscape; however, researchers in Latin America face persistent structural constraints that limit their competitiveness. This study aimed to identify perceived barriers and strategies to mitigate structural disadvantages in accessing international research funding. We employed a sequential mixed-methods design. In the qualitative phase, a virtual focus group with five researchers from Mexico, Colombia, Argentina, and Guatemala explored experiences with international grant applications. Thematic analysis revealed three overarching themes: (1) strategies and good practices; (2) barriers and structural constraints; and (3) recommendations to support more inclusive funding practices. Barriers included language and cultural differences, perceived bias from Global North funders, differences in infrastructural expectations, and limited opportunities for networking. These insights informed the design of a quantitative survey, which was completed by 253 researchers from 16 countries; 60.4% had applied to international calls and 43.6% reported receiving at least one grant. Across 668 reported applications, success rate was 40.6%. The most frequently endorsed barriers were economic costs of networking (92.3%), misalignment between eligibility criteria and local trajectories (80.8%), rhetorical differences in grant writing (75.3%), and self-perceptions of lower competitiveness (69.2%). Results highlight persistent structural, linguistic, and cultural barriers that shape access to international funding. Participants proposed actionable strategies—particularly for international funders seeking to broaden Global South participation—including context-sensitive grant-writing training, mentorship schemes, and funding calls explicitly designed to account for the Latin American realities.
+bibliography: references.bib
+csl: plos-one.csl
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(dplyr)
+source("R/load_data.R")
+source("R/summaries.R")
+source("R/plots.R")
+
+dir.create("figures", showWarnings = FALSE)
+
+survey <- read_survey("data")
+participants <- survey$participants
+N <- nrow(participants)
+```
+
+
+
+# Introduction
+
+Scientific research has become a highly globalized enterprise, increasingly organized through international collaboration networks, competitive funding schemes, and standardized evaluation criteria. While global integration has expanded opportunities for knowledge circulation, it has also reinforced long-standing structural imbalances in research capacity across countries and regions [@ref01]. Researchers based in high-income countries typically have access to more robust funding, infrastructure, institutional backing, and international research networks, whereas researchers in low-to-middle-income countries (LMICs) encounter persistent structural constraints associated with comparatively fragile and under-resourced national scientific systems [@ref02; @ref03]. As the number of researchers competing for limited funding continues to grow faster than overall research budgets, these pre-existing differences increasingly translate into asymmetric research capacities and highly uneven scientific outputs [@ref04].
+
+These disparities are evident in global patterns of investment in research and development (R&D). On average, countries belonging to the Organisation for Economic Co-operation and Development (OECD) invest around 2% of their GDP in research and development, while many Latin American and African countries remain below 0.7% [@ref05; @ref06]. In Latin America, even though many countries have consolidated scientific systems supported by national agencies–such as the National Scientific and Technical Research Council (CONICET) in Argentina, the National Council of Science and Technology (CONACYT) in México, and the National Agency for Research and Development (ANID) in Chile—the predominance of public funding, together with these systems' vulnerability to economic cycles and political fluctuations, undermines the long-term sustainability of scientific agendas [@ref07; @ref08]. Public investment in research and development is primarily oriented toward advancing domestic priorities such as economic competitiveness, innovation, and social development, while international R&D funding that relies on public resources is often guided by strategic considerations rather than by redistributive objectives [@ref09; @ref10]. As a result, reliance on funders and donors from larger economies may limit the extent to which Latin American researchers and institutions are able to pursue research priorities closely aligned with local needs [@ref11; @ref12].
+
+Importantly, the challenges faced by researchers in less well-resourced systems are not limited to financial constraints. Structural asymmetries are also embedded in the very systems that govern how research is funded and valued. These mechanisms operate at the intersection of multiple social and contextual factors, shaping researchers' capacity to participate in international competitions and networks. Language, for example, functions as a key gatekeeping mechanism in global science. English has consolidated its position as the dominant language of scientific communication and is often a requirement for visibility and recognition. Studies indicate that more than 90% of academic publications are written in English, that these communications tend to receive higher citation rates, and that the journals publishing primarily in English have higher impact than those in other languages [@ref13; @ref14; @ref15]. For non-native English speakers, however, these conditions entail additional time, effort, and resources [@ref16; @ref17; @ref18]. Nationality adds another layer, as researchers from the Global South, especially those from underrepresented groups, often navigate visa restrictions, bureaucratic burdens, unfavorable exchange rates, and exclusionary practices that their peers in wealthier countries rarely face [@ref19; @ref20].
+
+Furthermore, grant writing itself constitutes a specialized professional skill that requires deliberate training, familiarity with funders' expectations, and institutional support. In many high-income countries (HICs), researchers operate within well-established support structures—such as research development offices, grant administrators, internal review processes, mentorship, and targeted training—that enhance preparedness for highly competitive funding calls [@ref21]. By contrast, researchers in less well-resourced scientific systems often have limited access to such support, with proposal development frequently absorbed into existing academic workloads.
+
+Collectively, these structural and contextual factors shape not only career trajectories but also the broader participation by Latin American researchers in international scientific events and networks. The literature highlights that Latin American researchers often experience lower success rates in international grant competitions, identifying barriers such as complex application procedures, limited institutional support, and differences between donor priorities and local challenges [@ref20]. These findings suggest that structural conditions within national research systems play a significant role in shaping researchers' competitiveness in international funding calls. Despite this growing body of work, much of the existing research on barriers to international research funding in the region relies on bibliometric analyses or opinion pieces [@ref07; @ref20; @ref22]. Relatively few studies incorporate the direct perspectives of researchers themselves. One notable exception is the study by Huete-Pérez and Salvatierra [@ref23], which used a mixed-methods design to assess biomedical research capacity in Colombia, Costa Rica, Guatemala, Panama, and Peru. Through expert interviews and surveys, the authors identified critical barriers, including insufficient national funding, dependency on external grants, weak postgraduate training opportunities, and fragile research infrastructures. This work underscores the value of combining qualitative insights with broader survey data to better understand how structural conditions shape researchers' experiences with international funding.
+
+Building on this gap, the present study aims to identify the structural and institutional factors that shape Latin American researchers' ability to compete for international research funding. By examining researchers' experiences with international funding calls, the study seeks to generate evidence that can inform context-sensitive strategies and capacity-building initiatives aimed at strengthening researchers' competitiveness within global funding environments. To this end, we conducted a mixed-methods study to examine the barriers and challenges faced by Latin American researchers when applying for international research funding. The initial qualitative phase involved a focus group with researchers from multiple Latin American countries, specifically designed to analyze their narratives and experiences related to submitting proposals to international funding calls. Insights from this focus group directly informed the design of a survey, which was tailored to assess the prevalence and variability of perceived barriers to applying for and securing funding, and subsequently used in the quantitative phase of the study.
+
+# Methods
+
+## Participants
+
+For the qualitative phase of this mixed-methods study, we invited five researchers from Mexico, Colombia, Argentina, and Guatemala, representing a range of academic career stages from postdoctoral to mid-career. Recruitment followed a snowball sampling strategy, a non-probabilistic method chosen to maximize diversity in geographic location, career stage, and research area. Eligibility criteria required that participants: (1) be fluent in Spanish; (2) be currently working in Latin America in a biomedical-related field; (3) have between three and twenty years of postdoctoral research experience; (4) demonstrate interest in fundraising, capacity building, and community development; and (5) possess documented experience in inclusive communities focused on strengthening research capacity. Recruitment for the qualitative phase took place between March 1, 2025 and April 10, 2025. All participants were adults and provided written informed consent, which was sent via email and returned signed before participation in the focus group.
+
+For the quantitative phase, a total of 253 individuals participated. All respondents met the inclusion criterion of being researchers who currently conduct or have previously conducted research in Latin America. Recruitment for the quantitative phase took place between June 17, 2025 and July 23, 2025. All participants were adults and participation was voluntary and anonymous. An electronic informed consent form was provided as the first page of the online survey; acceptance of this consent was required to proceed with the questionnaire. The consent form explicitly stated that participation was anonymous, voluntary, and that responses would be used for analysis, publication, and dissemination in open repositories.
+
+In both phases, no personally identifiable information (such as names or email addresses) was collected, and participants could withdraw at any point without completing the study. This study was reviewed and approved by the Responsible Conduct of Research Committee of the Faculty of Psychology at the University of Buenos Aires (approval code: CEI25001).
+
+## Materials and methods
+
+### Focus group
+
+For the qualitative phase of the study, a discussion guide was collaboratively and iteratively developed by the research team to encourage participants to share their experiences with international funding applications. The development process included multiple rounds of review and refinement to ensure the analytical relevance of the questions and alignment with the study's objectives. This collaborative approach enhanced the credibility of the instrument while fostering critical reflection on the positionalities of the research team.
+
+The final version of the guide was shared with participants in advance, allowing them to reflect on the proposed themes and prepare for a meaningful exchange. It included interactive exercises designed to stimulate engagement and encourage the sharing of personal narratives, while leaving space for new and unexpected themes to emerge organically. The guide can be found here <http://doi.org/10.17605/osf.io/fw9nk>.
+
+The online focus group was conducted in April 2025. The session, held in Spanish and moderated by team members trained in qualitative methods, lasted approximately 90 minutes. With participants' consent, the session was recorded and subsequently transcribed verbatim for analysis.
+
+### Quantitative survey
+
+For the quantitative phase, we constructed a self-administered survey based on the themes that emerged during the qualitative phase. We piloted the first version with 5 researchers from the community who suggested modifications and adjustments. The final version included 23 items, distributed across the following thematic sections: sociodemographic and academic background, research trajectory, experience applying to national and international funding calls, strategies for preparing applications, access to non-competitive funds, perceived barriers, and training needs. Questions employed multiple formats, including single- and multiple-choice items, Likert-type scales, open-ended text fields, and validated numeric ranges. Conditional logic was applied so that some questions were only displayed based on previous responses (e.g., only respondents who reported applying to international grants were asked about success rates). The estimated completion time for the survey was approximately 15 minutes. The final version of the questionnaire, data, and analyses script can be found here <http://doi.org/10.17605/osf.io/uvdqf>. Responses from participants with less than 80% of the questions answered were excluded from data analysis.
+
+The questionnaire was implemented in SurveyMonkey, which allowed for anonymous participation, logic branching, and validation of responses. It was administered in Spanish and circulated between June 17, 2025, and July 23, 2025, through academic networks, institutional mailing lists, and social media platforms.
+
+## Data analysis
+
+Qualitative data were analyzed using the six-phase thematic analysis approach proposed by Braun and Clarke [@ref24] following an inductive and semantic [@ref25] approach. This orientation prioritized the voices and lived experiences of the participants, rather than imposing predefined categories, which was particularly appropriate given the exploratory nature of the study. First, we underwent thorough familiarization with the data, reading and re-reading the full transcript while taking detailed notes to capture initial impressions, emotionally charged segments, and patterns of meaning. This process laid the groundwork for the second phase—initial coding—where the transcript was examined line by line to identify meaningful units and themes that captured both explicit barriers and more implicit assumptions or tensions expressed by participants.
+
+Initial coding was followed by axial coding, in which codes were grouped into provisional categories based on semantic similarities, causal relationships, or shared narrative structures. The grouping of themes was informed by recurrence, intensity, prevalence [@ref26], and narrative richness, prioritizing dimensions that revealed insights into participants' experiences, recommendations, and ideas within funding ecosystems.
+
+For the survey data, we calculated descriptive statistics. We reported absolute and relative frequencies (n, %) for categorical variables, as well as mean, standard deviation (SD), and 95% confidence intervals (CI) for the mean for numerical variables. All statistical analyses were conducted in R 4.5.1 [@ref27].
+
+This study was preregistered in the Open Science Framework (OSF) prior to data collection, ensuring transparency of the research objectives, methodology, and planned analyses. The preregistration protocol is publicly available at <https://osf.io/7b59j>.
+
+# Results
+
+## Thematic analysis of the focus group data
+
+The thematic analysis yielded three overarching themes: (1) Strategies and Good Practices for Navigating Funding Applications, (2) Barriers and Structural Constraints Limiting Access to International Funding, and (3) Recommendations for More Inclusive International Funding Practices. While detailed subthemes and illustrative quotations are presented in the [s1-table]{.nameref}, several key insights emerge across themes.
+
+Participants described practical approaches—such as early administrative planning, adapting tone and language to reviewers, and leveraging peer review and collaborations—that can improve proposal quality. However, they acknowledged that these strategies often depend on access to supportive networks and resources that are not equally available to all researchers.
+
+Structural issues included opaque national calls, language and cultural barriers, and perceived biases from funders in the Global North. Participants emphasized that some requirements in international calls assume access to infrastructure or credentials that are not universally available, creating unrealistic expectations and excluding otherwise capable researchers. Limited opportunities for international networking and visibility further exacerbate this barrier.
+
+At the same time, participants proposed actionable recommendations to foster fairness and inclusivity in research funding, primarily directed at international funders seeking to increase the representation of Global South researchers in their funding calls. Given their central role in shaping eligibility criteria, evaluation standards, and support mechanisms in cross-border funding schemes, these funders were seen as key actors in enabling the participation of Latin American researchers. The recommendations included expanding calls that explicitly include LMICs, valuing Global South's unique comparative advantages and context-specific knowledge, and providing tailored training opportunities aligned with international funding requirements. Capacity-building initiatives were envisioned as practical, collaborative, and hands-on, with mentorship and simulated review processes highlighted as particularly effective in building familiarity with international standards and expectations.
+
+Collectively, these insights point to context-sensitive approaches that can strengthen capacity, foster participation, and increase the likelihood of success in international funding calls.
+
+## Survey participants characteristics
+
+```{r}
+#| label: sample
+
+countries <- count_table(participants$pais_de_origen)
+gender <- count_table(participants$genero)
+education <- count_table(participants$nivel_educativo_in)
+
+# Underrepresented groups: a person can select more than one group
+groups  <- filter(survey$groups, !is.na(grupo_es))
+n_any_group <- n_distinct(groups$response_id)
+group_types <- count_table(groups$grupo_in, total = n_any_group)
+
+# Research fields: a person can select more than one field
+fields <- filter(survey$fields, !is.na(investigacion_area_es))
+fields <- count_table(fields$investigacion_area_in, total = N)
+
+years <- mean_ci(participants$inv_anios)
+permanent <- count_table(participants$posicion_permanente)
+lead <- count_table(participants$liderar_equipos)
+supervise <- count_table(participants$dirigir_personas)
+hic <- count_table(participants$paises_con_recursos)
+hic_years <- participants |>
+  filter(paises_con_recursos == "Sí") |>
+  pull(ext_anios) |>
+  mean_ci()
+```
+
+The final sample included `r N` participants who completed at least 80% of the survey. Respondents were based in `r nrow(countries)` Latin American countries, with the highest representation from Argentina (`r report(countries, "Argentina")`), Mexico (`r report(countries, "México")`), Bolivia (`r report(countries, "Bolivia")`), and Colombia (`r report(countries, "Colombia")`). Most identified as women (`r report(gender, "Mujer cis")`), followed by men (`r report(gender, "Hombre cis")`), and a minority identified as non-binary or preferred not to disclose their gender (`r report(gender, c("No binario", "Prefiero no decir", NA))`). More than half of participants (`r n_pct(n_any_group, N)`) self-identified as belonging to one or more systematically excluded groups within the scientific community—most frequently, women and gender minorities (`r report(group_types, "Woman and minority genders")`), individuals from socioeconomically disadvantaged backgrounds (`r report(group_types, "People from disadvantaged socioeconomic backgrounds")`), Indigenous people (`r report(group_types, "Indigenous people")`), and persons with disabilities (`r report(group_types, "People with disabilities")`).
+
+Most participants held a graduate-level degree, with `r report_pct(education, "Completed PhD")` having completed a Ph.D. and `r report_pct(education, "Completed Master's")` a master's degree. The sample included researchers from diverse disciplinary fields, including natural and exact sciences (`r report(fields, "Natural and Exact Sciences")`), health sciences (`r report(fields, "Health Sciences")`), social sciences (`r report(fields, "Social Sciences")`), humanities (`r report(fields, "Humanities")`), and engineering (`r report(fields, "Engineering")`). The average number of years conducting research was `r num(years$M)` (n = `r years$n`, SD = `r num(years$SD)`, `r ci95(years)`), ranging from early-career researchers to senior academics. A substantial proportion of participants reported holding a permanent research position (`r report(permanent, "Sí")`) and having experience leading research teams (`r report(lead, "Sí")`) or supervising graduate students and postdoctoral researchers (`r report(supervise, "Sí")`). A third of respondents (`r report(hic, "Sí")`) had conducted part of their scientific career in HICs, with durations ranging from 1 to 20 years (M = `r num(hic_years$M)`, SD = `r num(hic_years$SD)`, `r ci95(hic_years)`).
+
+## Experience with funding applications
+
+```{r}
+#| label: applications
+
+national <- count_table(participants$convocatoria_nacional)
+international <- count_table(participants$convocatoria_internacional)
+
+applicants <- filter(participants, !is.na(pres), pres > 0)
+submitted <- mean_ci(applicants$pres)
+n_granted <- sum(participants$obt > 0, na.rm = TRUE)
+success <- mean_ci(applicants$obt / applicants$pres)
+```
+
+Regarding funding experience, `r report_pct(national, "Sí")` of participants had applied to national calls and `r report_pct(international, "Sí")` to international ones. A total of `r sum(applicants$pres)` international grant applications were reported by `r nrow(applicants)` researchers (mean submissions per researcher: M = `r num(submitted$M)`, SD = `r num(submitted$SD)`, `r ci95(submitted)`). `r pct_n(n_granted, N)` of all respondents reported having received international funding at least once. The overall success rate across all applications was `r num(100 * success$M)`% (M = `r num(success$M, lead_zero = FALSE)`, SD = `r num(success$SD, lead_zero = FALSE)`, `r ci95(success, lead_zero = FALSE)`). The distribution of the participants' success rate over the years of research experience is presented in @fig-success.
+
+```{r}
+#| label: fig-success
+#| fig-cap: "**Distribution of participants' success rate by year of research experience.** Above error bars n represents the number of participants."
+#| fig-width: 5.2
+#| fig-height: 3
+
+fig1 <- plot_success_by_experience(participants)
+save_plos_figure(fig1, "figures/Fig1.tiff")
+fig1
+```
+
+```{r}
+#| label: practices
+
+practice_levels <- c("Always", "Sometimes", "Never")
+always <- survey$practices |>
+  filter(respuesta_in == "Always") |>
+  pull(frecuencia_in) |>
+  count_table(total = n_distinct(survey$practices$response_id))
+```
+
+When asked about their usual practices in preparing grant applications, the most commonly reported actions (rated "always") included reviewing eligibility and call requirements (`r report(always, "Review of eligibility and call requirements")`), conducting a detailed reading of the call guidelines and annexes (`r report(always, "Thorough reading of call guidelines and annexes")`), and alignment of the project objectives with the call (`r report(always, "Strategic alignment of project objectives with the call")`). Less frequently applied were practices such as requesting feedback from colleagues (`r report(always, "Request feedback from colleagues")`), studying the profiles of funder institutions and reviewers (`r report(always, "Research evaluators and institutions involved")`), and establishing strategic partnerships with other institutions or researchers (`r report(always, "Establish partnerships")`) (@fig-practices).
+
+```{r}
+#| label: fig-practices
+#| fig-cap: "**Reported practices in preparing grant applications.**"
+#| fig-width: 5.2
+#| fig-height: 3
+
+fig2 <- plot_likert(survey$practices, item = frecuencia_in, response = respuesta_in,
+                    levels = practice_levels, top = "Always")
+save_plos_figure(fig2, "figures/Fig2.tiff")
+fig2
+```
+
+## Perceived barriers to accessing international funding
+
+```{r}
+#| label: barriers
+
+agree_levels <- c("Strongly agree", "Agree", "Neither agree nor disagree",
+                  "Disagree", "Strongly disagree")
+n_barriers <- n_distinct(survey$barriers$response_id)
+agree <- survey$barriers |>
+  filter(respuesta_in %in% c("Strongly agree", "Agree")) |>
+  pull(barreras_in) |>
+  count_table(total = n_barriers)
+
+# Open-ended responses were coded manually: this value is not computed from the data
+n_open_ended <- 47
+```
+
+Perceived barriers to international funding were assessed using a set of 10 Likert-scale items (n = `r n_barriers` complete responses). The vast majority of respondents identified economic barriers to attending international networking events as a major obstacle to accessing international research funding, with more than nine out of ten participants (`r report(agree, "Economic barriers to networking")`) agreeing or strongly agreeing with this statement. The misalignment between the eligibility requirements of international calls and local academic trajectories (e.g., time since Ph.D., position titles) was endorsed by `r report_pct(agree, "Requirements not adapted to local contexts")` of respondents, and rhetorical differences in writing style by `r report_pct(agree, "Cultural differences in writing style")`. Psychosocial and perception-related barriers were also salient. Many reported perceiving self-doubt in Latin American researchers regarding their capacity to compete at an international level (`r report(agree, "Self-doubt in Latin American researchers")`) and, at the same time, not being accustomed to self-promotion practices (`r report(agree, "Low self-promotion practices")`). In addition, `r report_pct(agree, "Bias against Latin American teams")` highlighted biased perceptions from funders about Latin American scientific and infrastructural capabilities as a barrier. Language-related challenges were endorsed by just over half of participants, with `r report_pct(agree, "Language barrier (non-native language)")` reporting the use of a non-native language as a barrier (@fig-barriers).
+
+```{r}
+#| label: fig-barriers
+#| fig-cap: "**Perceived barriers to accessing international research funding among Latin American researchers.**"
+#| fig-width: 5.2
+#| fig-height: 3
+
+fig3 <- plot_likert(survey$barriers, item = barreras_in, response = respuesta_in,
+                    levels = agree_levels, top = c("Strongly agree", "Agree"))
+save_plos_figure(fig3, "figures/Fig3.tiff")
+fig3
+```
+
+By contrast, few participants identified issues of clarity in funding information (`r report(agree, "Lack of clarity of funding information")`) or low regional representation in international networks (`r report(agree, "Low regional representation in international networks")`) as critical barriers.
+
+Open-ended responses (`r n_pct(n_open_ended, n_barriers)`) highlighted additional barriers. Specifically, the misalignment between Global North funders' agendas and local priorities; limited training on how funders operate and make decisions; structural exclusion through elitist or closed research networks; bureaucratic hurdles due to lack of institutional support and difficulties receiving international transfers. Respondents also noted visibility constraints due to limited access to open-access publishing and bibliographic databases, as well as limited familiarity with international evaluation metrics.
+
+# Discussion
+
+Over the past decades, Latin America has made notable advances in scientific productivity, with an increasing number of publications and strengthened research networks. Nevertheless, researchers in the region continue to operate under structural conditions that shape their competitiveness in international funding environments in ways that differ from those of researchers based in HICs [@ref12]. Linguistic, institutional, and contextual factors intersect to influence how Latin American researchers prepare, submit, and experience international grant applications [@ref28].
+
+In this study, we use a mixed-methods design to examine barriers to international research funding among Latin American researchers. The focus group qualitative analysis, together with survey responses to closed and open-ended questions, converged on similar structural and procedural challenges. Consistent with previous research [@ref17; @ref29; @ref30; @ref31], the requirement to write grant proposals in English emerged as a key barrier. Participants described how this linguistic demand not only compromises the clarity and persuasiveness of proposals but also reinforces perceptions of lower competitiveness. Cultural differences in rhetorical conventions further influence proposal development, as international funders often prioritize concise, action-oriented writing styles that may differ from the more expository or theory-driven traditions prevalent in the region [@ref30; @ref31].
+
+Participants also highlighted how features of grant review processes can interact with these linguistic and cultural dynamics. Evaluation criteria and review norms developed within predominantly English-speaking contexts may inadvertently disadvantage researchers from historically underrepresented regions and groups [@ref29; @ref32]. This, together with psychosocial factors such as self-doubt and regional norms that sanction overt self-promotion, was described as shaping proposals where applicants hedge claims, default to passive voice and collective authorship, understate outcomes and novelty, avoid explicit asks regarding budget and resources, and omit quantifiable milestones and track record highlights. Reviewers may read these features as lower confidence, feasibility, and leadership.
+
+These findings underscore that grant writing differs significantly from academic writing and constitutes a specialized professional skill that requires specific training and institutional support [@ref33]. However, the lack of accessible training programs in Spanish or Portuguese that address both linguistic and cultural mismatches further limits Latin American researchers' ability to compete on equal footing with their peers in the Global North. Training or offering support in writing and framing proposals, tailored to international rhetorical expectations while maintaining local voices and their relevance, may help mitigate the disadvantages associated with cultural style differences.
+
+Our analyses also underscored visibility and dissemination constraints that respondents perceived as directly limiting their chances of securing funding. In line with Boudry [@ref34], respondents pointed to paywalled literature and to open-access processing charges (APCs) as structural barriers that disproportionately impact LMIC authors, as they skew who gets read and cited. Respondents also linked limited visibility to difficulties attending networking events, which, in turn, diminishes their access to opportunities. This coincides with Mocanu et al. [@ref35], which concludes that what predicts the success of grant applications is, largely, the PI's previous publications and their international visibility. Enabling travel grants, virtual partnering, and mentorship linking applicants with experienced PIs could mitigate these limitations.
+
+Administrative load and weak institutional support also emerged as another limiting factor. As suggested by previous studies [@ref36; @ref37; @ref38], substantial administrative burden in grant preparation and management diverts time from research, and this disproportionately impacts less-resourced institutions [@ref39]. Including LMIC experts in the design of funding calls, calibrating expectations about organisational models, and valuing contextual knowledge may reduce the current asymmetries [@ref40].
+
+Beyond linguistic and cultural factors, several structural features of the global research funding landscape continue to shape Latin American researchers' participation in international funding competitions [@ref40]. While international funding schemes are not designed to address structural disparities between research systems, some funding organizations have begun to explore ways of promoting diversity and broader participation within the global research ecosystem. Current and former initiatives by funders such as the Wellcome Trust, the International Development Research Centre (IDRC), the Gates Foundation, and the Chan Zuckerberg Initiative illustrate an emerging interest in equity, diversity, and inclusion (EDI). Although a systematic assessment of such initiatives falls outside the scope of this study, our findings highlight the importance of evidence-informed approaches to understanding how structural conditions shape researchers' experiences. In this context, the development of standardized indicators and transparent data collection practices may help assess the effects of EDI-oriented measures and clarify how different support mechanisms interact with existing funding processes, particularly for researchers based in LMICs [@ref41].
+
+This work has some limitations that should be taken into consideration when interpreting the results. First, the measures rely on self-report; we did not independently verify the number of submissions or awards, nor did we track proposals and career paths longitudinally. As a result, recall bias and social desirability bias cannot be ruled out. Second, the analysis focuses primarily on funding success and perceived barriers in international grant competitions. We did not examine other relevant indicators of research outcomes, such as reviewer scores, subsequent network development, or publication trajectories, which may capture additional benefits associated with applying for international funding. Third, our sample over-represents researchers based in Argentina, reducing regional generalizability. Finally, several challenges discussed in this study—such as limited research infrastructure, institutional capacity constraints, and administrative burdens—are closely linked to domestic science policy contexts. These factors fall in part outside the scope of international funding design and cannot be readily addressed through modifications to international funding schemes alone.
+
+Taken together, the present findings contribute to a more nuanced understanding of how structural conditions shape researchers' competitiveness in international funding environments and where targeted, feasible forms of support may be most effective. Enabling mechanisms informed by the experiences of Latin American researchers, such as those focused on proposal preparation, institutional capacity, and navigation of funding processes, have the potential to strengthen researchers' preparedness for international funding competitions in the near to mid term. Future work should build on these findings and assess the impact of potential interventions.
+
+# References
