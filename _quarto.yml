@@ -10,6 +10,12 @@ manuscript:
     - text: Plot functions
       icon: file-code
       href: R/plots.R
+    - repo
+  meca-bundle: true
+  resources:
+    - data/
+    - R/
+
 
 format:
   html:
@@ -17,6 +23,7 @@ format:
       hypothesis: true
   docx: default
   pdf: default
+  jats: default 
 
 execute:
   freeze: true
